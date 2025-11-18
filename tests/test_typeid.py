@@ -1,5 +1,4 @@
 import pytest
-
 import uuid_utils.compat as uuid
 
 from typeid import TypeID

@@ -1,7 +1,7 @@
 import warnings
 from typing import Optional
-
 from uuid import UUID
+
 from uuid_utils.compat import uuid7
 
 from typeid import base32
