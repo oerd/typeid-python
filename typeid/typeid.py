@@ -105,8 +105,8 @@ def _convert_b32_to_uuid(b32: str) -> UUID:
     uuid_bytes = bytes(base32.decode(b32))
     uuid_int = int.from_bytes(uuid_bytes, byteorder="big")
     # Do not pass `version` here. Python's stdlib `uuid.UUID` constructor
-    # only accepts versions 1-5 for the `version` parameter, and will raise
+    # only accepts versions 1-5 for the `version` parameter and will raise
     # for 6/7/8. The version bits are already encoded within the 128-bit
-    # integer, so constructing from `int` is sufficient and the `version`
+    # integer, so constructing from `int` is enough and the `version`
     # property will be correctly inferred (including for v7 UUIDs).
     return UUID(int=uuid_int)
