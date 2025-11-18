@@ -9,6 +9,7 @@ on:
     paths-ignore:
       - README.md
       - CHANGELOG.md
+  workflow_dispatch:
 
 env:
   PROJECT_NAME: typeid-python

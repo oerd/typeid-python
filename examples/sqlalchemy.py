@@ -20,6 +20,7 @@ class TypeIDType(types.TypeDecorator):
             default=lambda: TypeID("user")
         )
     """
+
     impl = types.Uuid
 
     cache_ok = True
