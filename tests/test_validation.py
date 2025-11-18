@@ -46,7 +46,7 @@ def test_validate_not_ascii_prefix() -> None:
 
 
 @pytest.mark.parametrize(
-    "prefix", 
+    "prefix",
     [("_"), ("__"), ("_abcd"), ("abcd_"), ("___")],
     ids=["single_underscore", "double_underscore", "underscore_prefix", "underscore_suffix", "underscore_everywhere"],
 )
