@@ -1,7 +1,7 @@
 > ⚠️ This repo was forked from [akhundMurad/typeid-python](https://github.com/akhundMurad/typeid-python) this fork
 > is a drop-in replacement for `typeid-python` but follows some of my personal preferences e.g.:
->  - using `uuid_utils` for UUIDv7, 
->  - getting more detailed validation errors, and 
+>  - using `uuid_utils` for UUIDv7,
+>  - getting more detailed validation errors, and
 >  - having "typeid-factories" that have a constant validated prefix (still in the works).
 
 # TypeID Python
@@ -112,8 +112,8 @@ This particular implementation provides an pip package that can be used by any P
     ```shell
     # to let `uv` handle venv etc
     uv run typeid
-    
-    # to do-it-yourself 
+
+    # to do-it-yourself
     . .venv/bin/activate
     typeid
     ```
