@@ -43,6 +43,9 @@ build = [
 [project.optional-dependencies]
 cli = ["click>=8.3.1"]
 
+[project.scripts]
+typeid = "typeid.cli:cli"
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
