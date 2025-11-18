@@ -1,9 +1,10 @@
-from typing import Optional
-
 import click
 from uuid_utils.compat import UUID
 
-from typeid import TypeID, base32, from_uuid, get_prefix_and_suffix
+from typeid import TypeID
+from typeid import base32
+from typeid import from_uuid
+from typeid import get_prefix_and_suffix
 
 
 @click.group()
@@ -13,7 +14,7 @@ def cli():
 
 @cli.command()
 @click.option("-p", "--prefix")
-def new(prefix: Optional[str] = None) -> None:
+def new(prefix: str | None = None) -> None:
     typeid = TypeID(prefix=prefix)
     click.echo(str(typeid))
 
@@ -21,7 +22,7 @@ def new(prefix: Optional[str] = None) -> None:
 @cli.command()
 @click.argument("uuid")
 @click.option("-p", "--prefix")
-def encode(uuid: str, prefix: Optional[str] = None) -> None:
+def encode(uuid: str, prefix: str | None = None) -> None:
     typeid = from_uuid(suffix=UUID(uuid), prefix=prefix)
     click.echo(str(typeid))
 

@@ -1,9 +1,7 @@
-from typing import List
-
+# noqa
 from typeid.constants import SUFFIX_LEN
 
 ALPHABET = "0123456789abcdefghjkmnpqrstvwxyz"
-
 
 TABLE = [
     0xFF,
@@ -265,7 +263,7 @@ TABLE = [
 ]
 
 
-def encode(src: List[int]) -> str:
+def encode(src: list[int]) -> str:
     dst = [""] * SUFFIX_LEN
 
     if len(src) != 16:
@@ -304,7 +302,7 @@ def encode(src: List[int]) -> str:
     return "".join(dst)
 
 
-def decode(s: str) -> List[int]:
+def decode(s: str) -> list[int]:
     v = bytes(s, encoding="utf-8")
 
     if (
