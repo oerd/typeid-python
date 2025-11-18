@@ -48,7 +48,7 @@ def test_validate_not_ascii_prefix() -> None:
 @pytest.mark.parametrize(
     "prefix", 
     [("_"), ("__"), ("_abcd"), ("abcd_"), ("___")],
-    ids=["single_underscore", "double_underscore", "underscore_prefix", "underscore_suffix", "underscores_everywhere"],
+    ids=["single_underscore", "double_underscore", "underscore_prefix", "underscore_suffix", "underscore_everywhere"],
 )
 def test_validate_invalid_all_underscore_prefix(prefix) -> None:
     with pytest.raises(PrefixValidationException):
