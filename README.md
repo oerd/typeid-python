@@ -1,5 +1,11 @@
-# TypeID Python
+> ⚠️ This repo was forked from [akhundMurad/typeid-python](https://github.com/akhundMurad/typeid-python) this fork
+> is a drop-in replacement for `typeid-python` but follows some of my personal preferences e.g.:
+>  - using `uuid_utils` for UUIDv7, 
+>  - getting more detailed validation errors, and 
+>  - having "typeid-factories" that have a constant validated prefix (still in the works).
 
+# TypeID Python
+<!--
 <a href="https://github.com/akhundMurad/typeid-python/actions?query=setup%3ACI%2FCD+event%3Apush+branch%3Amain" target="_blank">
     <img src="https://github.com/akhundMurad/typeid-python/actions/workflows/setup.yml/badge.svg?event=push&branch=main" alt="Test">
 </a>
@@ -12,6 +18,7 @@
 <a href="https://pypi.org/project/typeid-python" target="_blank">
     <img src="https://img.shields.io/pypi/pyversions/typeid-python.svg?color=red&labelColor=black" alt="Supported Python versions">
 </a>
+-->
 
 ## A Python implementation of [TypeIDs](https://github.com/jetpack-io/typeid) using Python
 
@@ -23,6 +30,12 @@ Read more about TypeIDs in their [spec](https://github.com/jetpack-io/typeid).
 This particular implementation provides an pip package that can be used by any Python project.
 
 ## Installation
+
+- UV:
+
+    ```console
+    uv add typeid-python
+    ```
 
 - PyPI:
 
@@ -84,20 +97,36 @@ This particular implementation provides an pip package that can be used by any P
 
 - Install dependencies:
 
-    ```console
+  - uv
+    ```shell
+    uv add typeid-python[cli]
+    ```
+
+  - pip (generic)
+    ```shell
     pip install typeid-python[cli]
     ```
 
 - To generate a new TypeID, run:
+  - uv
+    ```shell
+    # to let `uv` handle venv etc
+    uv run typeid
+    
+    # to do-it-yourself 
+    . .venv/bin/activate
+    typeid
+    ```
 
-    ```console
+  - pip (generic)
+    ```shell
     $ python3 -m typeid.cli new -p prefix
     prefix_01h2xcejqtf2nbrexx3vqjhp41
     ```
 
 - To decode an existing TypeID into a UUID run:
 
-    ```console
+    ```shell
     $ python3 -m typeid.cli decode prefix_01h2xcejqtf2nbrexx3vqjhp41
     type: prefix
     uuid: 0188bac7-4afa-78aa-bc3b-bd1eef28d881
@@ -105,7 +134,7 @@ This particular implementation provides an pip package that can be used by any P
 
 - And to encode an existing UUID into a TypeID run:
 
-    ```console
+    ```shell
     $ python3 -m typeid.cli encode 0188bac7-4afa-78aa-bc3b-bd1eef28d881 --prefix prefix
     prefix_01h2xcejqtf2nbrexx3vqjhp41
     ```
