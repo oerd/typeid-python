@@ -1,7 +1,7 @@
 from typing import Optional
 
 import click
-from uuid6 import UUID
+from uuid_utils.compat import UUID
 
 from typeid import TypeID, base32, from_uuid, get_prefix_and_suffix
 

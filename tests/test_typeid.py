@@ -1,5 +1,6 @@
 import pytest
-import uuid6
+
+import uuid_utils.compat as uuid
 
 from typeid import TypeID
 from typeid.errors import SuffixValidationException
@@ -102,9 +103,9 @@ def test_construct_type_from_invalid_string() -> None:
 
 
 def test_construct_type_from_uuid() -> None:
-    uuid = uuid6.uuid7()
+    uid = uuid.uuid7()
 
-    typeid = TypeID.from_uuid(suffix=uuid, prefix="")
+    typeid = TypeID.from_uuid(suffix=uid, prefix="")
 
     assert isinstance(typeid, TypeID)
     assert typeid.prefix == ""
@@ -112,10 +113,10 @@ def test_construct_type_from_uuid() -> None:
 
 
 def test_construct_type_from_uuid_with_prefix() -> None:
-    uuid = uuid6.uuid7()
+    uid = uuid.uuid7()
     prefix = "prefix"
 
-    typeid = TypeID.from_uuid(prefix=prefix, suffix=uuid)
+    typeid = TypeID.from_uuid(prefix=prefix, suffix=uid)
 
     assert isinstance(typeid, TypeID)
     assert typeid.prefix == "prefix"
@@ -135,10 +136,10 @@ def test_hash_type_id() -> None:
 
 
 def test_uuid_property() -> None:
-    uuid = uuid6.uuid7()
+    uid = uuid.uuid7()
 
-    typeid = TypeID.from_uuid(suffix=uuid)
+    typeid = TypeID.from_uuid(suffix=uid)
 
-    assert isinstance(typeid.uuid, uuid6.UUID)
-    assert typeid.uuid.version == uuid.version == 7
-    assert typeid.uuid.time == uuid.time
+    assert isinstance(typeid.uuid, uuid.UUID)
+    assert typeid.uuid.version == uid.version == 7
+    assert typeid.uuid.time == uid.time

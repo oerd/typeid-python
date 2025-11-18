@@ -1,5 +1,5 @@
 import pytest
-from uuid6 import uuid7
+import uuid_utils.compat as uuid
 
 from typeid import base32
 from typeid.errors import PrefixValidationException, SuffixValidationException
@@ -56,7 +56,7 @@ def test_validate_invalid_all_underscore_prefix(prefix) -> None:
 
 
 def test_validate_correct_suffix() -> None:
-    suffix = base32.encode(list(uuid7().bytes))
+    suffix = base32.encode(list(uuid.uuid7().bytes))
 
     try:
         validate_suffix(suffix)

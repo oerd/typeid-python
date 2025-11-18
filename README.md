@@ -70,7 +70,7 @@ This particular implementation provides an pip package that can be used by any P
 
     ```python
     from typeid import TypeID
-    from uuid6 import uuid7
+    from uuid_utils.compat import uuid7
 
     uuid = uuid7()  # UUID('01890bf0-846f-7762-8605-5a3abb40e0e5')
     prefix = "user"
