@@ -96,83 +96,33 @@ warn_unused_configs = true
 [tool.ruff]
 line-length = 120
 target-version = "py312"
-# Exclude a variety of commonly ignored directories.
-extend-exclude = [
-    "*/migrations/*.py",
-    "staticfiles/*",
-    "*.pyi",
-]
 
 [tool.ruff.lint]
 select = [
-    "F",
-    "E",
-    "W",
-    "C90",
-    "I",
-    "N",
-    "UP",
-    "YTT",
-    # "ANN", # flake8-annotations: we should support this in the future but 100+ errors atm
-    "ASYNC",
-    "S",
-    "BLE",
-    "FBT",
-    "B",
-    "A",
-    "COM",
-    "C4",
-    "DTZ",
-    "T10",
-    "DJ",
-    "EM",
-    "EXE",
-    "FA",
-    'ISC',
-    "ICN",
-    "G",
-    'INP',
-    'PIE',
-    "T20",
-    'PYI',
-    'PT',
-    "Q",
-    "RSE",
-    "RET",
-    "SLF",
-    "SLOT",
-    "SIM",
-    "TID",
-    "TC",
-    "INT",
-    # "ARG", # Unused function argument
-    "PTH",
-    "ERA",
-    "PD",
-    "PGH",
-    "PL",
-    "TRY",
-    "FLY",
-    # "NPY",
-    # "AIR",
-    "PERF",
-    # "FURB",
-    # "LOG",
-    "RUF",
+    "F",   # pyflakes
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "I",   # isort
+    "N",   # pep8-naming
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "S",   # flake8-bandit
+    "SIM", # flake8-simplify
+    "PT",  # flake8-pytest-style
+    "RUF", # ruff-specific rules
 ]
 ignore = [
-    "S101", # Use of assert detected https://docs.astral.sh/ruff/rules/assert/
-    "RUF012", # Mutable class attributes should be annotated with `typing.ClassVar`
+    "N818",   # exception class names are part of the public API; renaming would break users
     "SIM102", # sometimes it's better to nest
-    "UP038", # Checks for uses of isinstance/issubclass that take a tuple
-    # of types for comparison.
-    # Deactivated because it can make the code slow:
-    # https://github.com/astral-sh/ruff/issues/7871
 ]
-# The fixes in extend-unsafe-fixes will require
-# provide the `--unsafe-fixes` flag when fixing.
-extend-unsafe-fixes = [
-    "UP038",
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+    "S101", # asserts are expected in tests
+]
+"examples/*" = [
+    "S101", # asserts are fine in example code
 ]
 
 [tool.ruff.lint.isort]
