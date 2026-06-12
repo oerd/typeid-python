@@ -11,7 +11,7 @@ from typeid.validation import validate_suffix
 
 class TypeID:
     def __init__(self, prefix: str | None = None, suffix: str | None = None) -> None:
-        suffix = _convert_uuid_to_b32(uuid7()) if not suffix else suffix
+        suffix = suffix if suffix else _convert_uuid_to_b32(uuid7())
         validate_suffix(suffix=suffix)
         if prefix:
             validate_prefix(prefix=prefix)
@@ -49,7 +49,7 @@ class TypeID:
         return value
 
     def __repr__(self):
-        return "%s(%r)" % (self.__class__.__name__, str(self))
+        return f"{self.__class__.__name__}({str(self)!r})"
 
     def __eq__(self, value: object) -> bool:
         if not isinstance(value, TypeID):
@@ -71,12 +71,12 @@ class TypeID:
 
 
 def from_string(string: str) -> TypeID:
-    warnings.warn("Consider TypeID.from_string instead.", DeprecationWarning)
+    warnings.warn("Consider TypeID.from_string instead.", DeprecationWarning, stacklevel=2)
     return TypeID.from_string(string=string)
 
 
 def from_uuid(suffix: UUID, prefix: str | None = None) -> TypeID:
-    warnings.warn("Consider TypeID.from_uuid instead.", DeprecationWarning)
+    warnings.warn("Consider TypeID.from_uuid instead.", DeprecationWarning, stacklevel=2)
     return TypeID.from_uuid(suffix=suffix, prefix=prefix)
 
 

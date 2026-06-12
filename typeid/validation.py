@@ -26,7 +26,7 @@ def validate_suffix(suffix: str) -> None:
         or suffix == ""
         or " " in suffix
         or (not suffix.isdigit() and not suffix.islower())
-        or any([symbol not in base32.ALPHABET for symbol in suffix])
+        or any(symbol not in base32.ALPHABET for symbol in suffix)
         or suffix[0] > "7"
     ):
         raise SuffixValidationException(f"Invalid suffix: {suffix}.")
