@@ -1,6 +1,7 @@
 from typeid import base32
 from typeid.constants import SUFFIX_LEN
-from typeid.errors import PrefixValidationException, SuffixValidationException
+from typeid.errors import PrefixValidationException
+from typeid.errors import SuffixValidationException
 
 
 def validate_prefix(prefix: str) -> None:

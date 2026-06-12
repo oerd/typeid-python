@@ -1,9 +1,11 @@
 import pytest
-from uuid6 import uuid7
+import uuid_utils.compat as uuid
 
 from typeid import base32
-from typeid.errors import PrefixValidationException, SuffixValidationException
-from typeid.validation import validate_prefix, validate_suffix
+from typeid.errors import PrefixValidationException
+from typeid.errors import SuffixValidationException
+from typeid.validation import validate_prefix
+from typeid.validation import validate_suffix
 
 
 def test_validate_correct_prefix() -> None:
@@ -48,7 +50,13 @@ def test_validate_not_ascii_prefix() -> None:
 @pytest.mark.parametrize(
     "prefix",
     [("_"), ("__"), ("_abcd"), ("abcd_"), ("___")],
-    ids=["single_underscore", "double_underscore", "underscore_prefix", "underscore_suffix", "underscore_everywhere"],
+    ids=[
+        "single_underscore",
+        "double_underscore",
+        "underscore_prefix",
+        "underscore_suffix",
+        "underscore_everywhere",
+    ],
 )
 def test_validate_invalid_all_underscore_prefix(prefix) -> None:
     with pytest.raises(PrefixValidationException):
@@ -56,7 +64,7 @@ def test_validate_invalid_all_underscore_prefix(prefix) -> None:
 
 
 def test_validate_correct_suffix() -> None:
-    suffix = base32.encode(list(uuid7().bytes))
+    suffix = base32.encode(list(uuid.uuid7().bytes))
 
     try:
         validate_suffix(suffix)

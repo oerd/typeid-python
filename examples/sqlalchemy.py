@@ -1,7 +1,6 @@
-from typing import Optional
-
 from sqlalchemy import types
 from sqlalchemy.util import generic_repr
+
 from typeid import TypeID
 
 
@@ -20,13 +19,14 @@ class TypeIDType(types.TypeDecorator):
             default=lambda: TypeID("user")
         )
     """
+
     impl = types.Uuid
 
     cache_ok = True
 
-    prefix: Optional[str] = None
+    prefix: str | None = None
 
-    def __init__(self, prefix: Optional[str], *args, **kwargs):
+    def __init__(self, prefix: str | None, *args, **kwargs):
         self.prefix = prefix
         super().__init__(*args, **kwargs)
 

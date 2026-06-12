@@ -1,13 +1,31 @@
-check-linting:
-	poetry run isort --check --profile black typeid/ tests/
-	poetry run flake8 --exit-zero typeid/ tests/ --exit-zero
-	poetry run black --check --diff typeid/ tests/ --line-length 119
-	poetry run mypy typeid/ --pretty
+# Main project-related automations
+VENV	  ?= .venv
+VENV_BIN  ?= $(VENV)/bin
+RUFF	  ?= $(VENV_BIN)/ruff
+PRECOMMIT ?= $(VENV_BIN)/pre-commit
 
+BINARIES  := $(RUFF) $(PRECOMMIT)
+
+usage:                    				## Show this help
+	@grep -Fh "##" $(MAKEFILE_LIST) | grep -Fv fgrep | sed -e 's/:.*##\s*/##/g' | awk -F'##' '{ printf "%-25s %s\n", $$1, $$2 }'
+
+sync: pyproject.toml
+	uv sync --all-extras --dev --group=build
+
+$(BINARIES): sync
+
+init-precommit: $(PRECOMMIT)  $(TERRAFORM)				## Install git pre-commit hooks
+	$(PRECOMMIT) install
+
+precommit: init-precommit $(PRECOMMIT) $(TERRAFORM)		## Install pre-commit on all files
+	$(PRECOMMIT) run --all-files
+
+check-linting: precommit    ## Run lint checks (via pre-commit)
+	$(PRECOMMIT) run --all-files
 
 fix-linting:
-	poetry run isort --profile black typeid/ tests/
-	poetry run black typeid/ tests/ --line-length 119
+	uv run isort --profile black typeid/ tests/
+	uv run black typeid/ tests/ --line-length 119
 
 
 artifacts: test
@@ -18,21 +36,9 @@ clean:
 	rm -rf dist build *.egg-info
 
 
-prepforbuild:
-	pip install build
-
-
 build:
-	poetry build
-
-
-test-release:
-	twine upload --repository testpypi dist/* --verbose
-
-
-release:
-	twine upload --repository pypi dist/* --verbose
+	uv build
 
 
 test:
-	poetry run pytest -v
+	uv run pytest -v

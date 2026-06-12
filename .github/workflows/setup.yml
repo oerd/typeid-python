@@ -9,6 +9,7 @@ on:
     paths-ignore:
       - README.md
       - CHANGELOG.md
+  workflow_dispatch:
 
 env:
   PROJECT_NAME: typeid-python
@@ -18,30 +19,34 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+        python-version:
+          - "3.10"
+          - "3.11"
+          - "3.12"
+          - "3.13"
+          - "3.14"
+
+    env:
+      UV_PYTHON: ${{ matrix.python-version }}
 
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 9
-          submodules: false
+      - uses: actions/checkout@v5
 
-      - name: Use Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+      - name: "Install uv and Setup Python ${{ matrix.python-version }}"
+        uses: astral-sh/setup-uv@v6
         with:
+          version: "0.9.10"
           python-version: ${{ matrix.python-version }}
 
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-
-      - name: Install Dependencies
-        run: |
-          poetry install --with dev
+      - name: "Install the project and depedencies"
+        run: uv sync --locked --all-extras --dev
 
       - name: Run tests
-        run: |
-          make test
+        run: uv run pytest -v
 
       - name: Run linters
         run: |
-          make check-linting
+          uv run isort --check --profile black typeid/ tests/
+          uv run flake8 --exit-zero typeid/ tests/ --exit-zero
+          uv run black --check --diff typeid/ tests/ --line-length 119
+          uv run mypy typeid/ --pretty
