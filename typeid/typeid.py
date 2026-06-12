@@ -98,11 +98,11 @@ def get_prefix_and_suffix(string: str) -> tuple:
 
 
 def _convert_uuid_to_b32(uuid_instance: UUID) -> str:
-    return base32.encode(list(uuid_instance.bytes))
+    return base32.encode(uuid_instance.bytes)
 
 
 def _convert_b32_to_uuid(b32: str) -> UUID:
-    uuid_bytes = bytes(base32.decode(b32))
+    uuid_bytes = base32.decode(b32)
     uuid_int = int.from_bytes(uuid_bytes, byteorder="big")
     # Do not pass `version` here. Python's stdlib `uuid.UUID` constructor
     # only accepts versions 1-5 for the `version` parameter and will raise

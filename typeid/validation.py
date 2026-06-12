@@ -1,7 +1,5 @@
 from typeid import base32
-from typeid.constants import SUFFIX_LEN
 from typeid.errors import PrefixValidationException
-from typeid.errors import SuffixValidationException
 
 
 def validate_prefix(prefix: str) -> None:
@@ -21,16 +19,5 @@ def validate_prefix(prefix: str) -> None:
 
 
 def validate_suffix(suffix: str) -> None:
-    if (
-        len(suffix) != SUFFIX_LEN
-        or suffix == ""
-        or " " in suffix
-        or (not suffix.isdigit() and not suffix.islower())
-        or any(symbol not in base32.ALPHABET for symbol in suffix)
-        or suffix[0] > "7"
-    ):
-        raise SuffixValidationException(f"Invalid suffix: {suffix}.")
-    try:
-        base32.decode(suffix)
-    except Exception as exc:
-        raise SuffixValidationException(f"Invalid suffix: {suffix}.") from exc
+    # The codec owns suffix validity (see docs/adr/0001); decoding is validation.
+    base32.decode(suffix)

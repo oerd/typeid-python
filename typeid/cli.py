@@ -32,8 +32,7 @@ def encode(uuid: str, prefix: str | None = None) -> None:
 def decode(encoded: str) -> None:
     prefix, suffix = get_prefix_and_suffix(encoded)
 
-    decoded_bytes = bytes(base32.decode(suffix))
-    uuid = UUID(bytes=decoded_bytes)
+    uuid = UUID(bytes=base32.decode(suffix))
 
     click.echo(f"type: {prefix}")
     click.echo(f"uuid: {uuid}")
