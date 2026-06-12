@@ -21,9 +21,8 @@ jobs:
 
       - name: "Run linters"
         run: |
-          uv run isort --check --profile black typeid/ tests/
-          uv run flake8 --exit-zero typeid/ tests/ --exit-zero
-          uv run black --check --diff typeid/ tests/ --line-length 119
+          uv run ruff check --select I typeid/ tests/
+          uv run ruff format --check typeid/ tests/
           uv run mypy typeid/ --pretty
 
   test:
