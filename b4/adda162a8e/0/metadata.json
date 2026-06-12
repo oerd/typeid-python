@@ -1,0 +1,140 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "b4adda162a8e",
+  "session_id": "f9605b06-7c4e-53da-96ad-fed770b20dd1",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-12T18:57:21.60010404Z",
+  "branch": "claude/gifted-hopper-qd8wfb",
+  "checkpoints_count": 0,
+  "files_touched": [
+    ".claude/hooks/session-start.sh",
+    ".claude/settings.json"
+  ],
+  "agent": "Claude Code",
+  "model": "",
+  "turn_id": "7e6b2125e0c1",
+  "token_usage": {
+    "input_tokens": 7523,
+    "cache_creation_tokens": 655559,
+    "cache_read_tokens": 6821253,
+    "output_tokens": 68390,
+    "api_call_count": 94
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "claude-skill-toolu_01QnLJnwAC5zpN9mYPgaKjec",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "improve-codebase-architecture"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "7e6b2125e0c1",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 179,
+        "end": 180,
+        "entry_ids": [
+          "c5fd4d7e-9cec-4e3c-b6b0-3115d6739ea8"
+        ],
+        "tool_use_id": "toolu_01QnLJnwAC5zpN9mYPgaKjec"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01QnLJnwAC5zpN9mYPgaKjec"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: improve-codebase-architecture",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_01Lv34usSziuhJMK4w36mVx8",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "setup-matt-pocock-skills"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "7e6b2125e0c1",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 219,
+        "end": 220,
+        "entry_ids": [
+          "6adf0103-40a5-43f8-9606-c38e01a6ba6b"
+        ],
+        "tool_use_id": "toolu_01Lv34usSziuhJMK4w36mVx8"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01Lv34usSziuhJMK4w36mVx8"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: setup-matt-pocock-skills",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_01NXhw8vGyw9FJQLnhDv2rs1",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "session-start-hook"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "7e6b2125e0c1",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 331,
+        "end": 332,
+        "entry_ids": [
+          "545c55dc-2a32-4e15-99c8-a28e04803901"
+        ],
+        "tool_use_id": "toolu_01NXhw8vGyw9FJQLnhDv2rs1"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01NXhw8vGyw9FJQLnhDv2rs1"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: session-start-hook",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "initial_attribution": {
+    "calculated_at": "2026-06-12T18:57:21.572505859Z",
+    "agent_lines": 38,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 38,
+    "total_lines_changed": 38,
+    "agent_percentage": 100,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    }
+  ]
+}
